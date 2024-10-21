@@ -1,15 +1,5 @@
 package com.models;
 
-<<<<<<< HEAD
-public class Imoveis {
-    private String titulo;
-    private String anunciante;
-    private String valor;
-    private String observacoes;
-    private String categoria;
-    private String endereco;
-    private String cidade;
-=======
 import java.io.Serializable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -43,7 +33,6 @@ public class Imoveis implements Serializable{
     private String cidade;
 
   
->>>>>>> 848217b (fazendo aa conecção com o banco e salvando os dados no banco)
     private String estado;
 
     public String getEndereco() {
