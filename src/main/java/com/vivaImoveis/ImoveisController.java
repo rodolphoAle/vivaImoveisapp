@@ -24,7 +24,7 @@ public class ImoveisController {
 
         ir.save(imoveis);
 
-        return "redirect:imoveis/formImoveis";
+        return "redirect:/cadastrarimoveis";
     }
 
 }
