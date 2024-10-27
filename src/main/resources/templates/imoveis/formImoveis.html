@@ -10,7 +10,7 @@
 </head>
 <body>
     <h1>Cadastro de imoveis</h1>
-    <form method="post">
+    <form action="/cadastrarimoveis" method="post" enctype="multipart/form-data">
         <label for="titulo">Título:</label>
         <input type="text" id="titulo" name="titulo" value=""/>
 
@@ -66,8 +66,7 @@
         <label><input type="radio" name="categoria" value="categoria_Aluguel"> Aluguel</label>
         <label><input type="radio" name="categoria" value="categoria_venda"> Venda  </label>
     
-        <label for="imagens">Adiconar imagens</label>
-        <input type="file" id="imagens" name="imagens" value=""/>
+        <input name="imagem" type="file" accept="image/*"/>
 
         <button type="submit">Salvar</button>
 

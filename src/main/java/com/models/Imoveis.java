@@ -1,10 +1,13 @@
 package com.models;
 
 import java.io.Serializable;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 
 @Entity
 public class Imoveis implements Serializable{
@@ -15,25 +18,34 @@ public class Imoveis implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
    
-    private String titulo;
-
-    
-    private String anunciante;
-
    
-    private String valor;
-
+    private String titulo;
+    private String anunciante;
+    private Double valor;
     private String observacoes;
     private String categoria;
-
-    
     private String endereco;
-
-    
     private String cidade;
-
-  
     private String estado;
+
+    @Lob
+    private byte[] imagem;  // Campo para armazenar a imagem
+
+    // Getters e Setters
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+    public byte[] getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
+    }
 
     public String getEndereco() {
         return endereco;
@@ -65,10 +77,10 @@ public class Imoveis implements Serializable{
     public void setAnunciante(String anunciante) {
         this.anunciante = anunciante;
     }
-    public String getValor() {
+    public Double getValor() {
         return valor;
     }
-    public void setValor(String valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
     public String getObservacoes() {
