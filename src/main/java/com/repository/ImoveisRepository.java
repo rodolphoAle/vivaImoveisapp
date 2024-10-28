@@ -11,4 +11,6 @@ public interface ImoveisRepository extends JpaRepository<Imoveis, Long> {
     List<Imoveis> findTop6ByOrderByIdDesc();
 
     
+
+    
 }

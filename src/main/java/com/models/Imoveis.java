@@ -1,13 +1,13 @@
 package com.models;
 
 import java.io.Serializable;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Imoveis implements Serializable{
@@ -31,7 +31,18 @@ public class Imoveis implements Serializable{
     @Lob
     private byte[] imagem;  // Campo para armazenar a imagem
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
     // Getters e Setters
+    public Usuario getUsuario(){
+        return usuario;
+    }
+    public void setUsuario(Usuario usuario){
+        this.usuario= usuario;
+    }
+
     public long getId() {
         return id;
     }

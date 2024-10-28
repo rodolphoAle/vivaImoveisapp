@@ -20,6 +20,9 @@ public class Usuario implements Serializable {
     private String senha;
     private String telefone;
     private String endereco;
+    private String cargo;
+    
+
 
     // Getters e Setters
 
