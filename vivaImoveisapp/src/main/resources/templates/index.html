@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Craigslist Brasil - Novidades da Semana</title>
+    <link rel="stylesheet" href="/src/main/resources/styles/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div>
+            <img src="https://via.placeholder.com/100x50.png?text=craigslist+br" alt="Craigslist Logo">
+        </div>
+        <div>
+            <a href="#">Anuncie Aqui</a>
+            <a href="#">Login</a>
+            <a href="#">Criar conta</a>
+        </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" placeholder="Pesquisar informações">
+        <button>&#128269;</button>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+        <form method="post">
+            <label for="estado">Selecione um Estado:</label>
+            <select id="estado" name="estado">
+                <option value="">-- Selecione um Estado --</option>
+                <option value="AC">Acre</option>
+                <option value="AL">Alagoas</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
+                <option value="BA">Bahia</option>
+                <option value="CE">Ceará</option>
+                <option value="DF">Distrito Federal</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
+                <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantins</option>
+            </select> 
+            <label for="cidade">Cidade:</label>
+            <input type="text" id="cidade" name="cidade" value=""/>
+            <label> Selecione a categoria do imovel:</label>
+            <label><input type="radio" name="categoria" value="categoria_Aluguel"> Aluguel</label>
+            <label><input type="radio" name="categoria" value="categoria_venda"> Venda  </label>
+            <button>&#128269; Filtrar</button>
+
+        </form>
+        
+    </div>
+
+    <!-- Properties Section -->
+    <h2 style="text-align: center;">Novidades da Semana</h2>
+    <div class="property-section">
+        <div class="novidades-container">
+            <div class="novidades">
+                <div th:each="imovel : ${novidades}" class="imovel-card">
+                    <img th:src="@{/imagem/{id}(id=${imovel.id})}" alt="Imagem do Imóvel" class="imovel-imagem"/>
+                    <h2 th:text="${imovel.titulo}">Título do Imóvel</h2>
+                    <p th:text="${imovel.cidade}">Cidade</p>
+                    <p th:text="${imovel.estado}">Estado</p>
+                    <p th:text="${imovel.endereco}">Endereço</p>
+                    <p th:text="'R$ ' + ${imovel.valor}">Valor</p>
+                    <a th:href="@{/imoveis/{id}(id=${imovel.id})}" class="saiba-mais">Saiba mais</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</body>
+</html>
