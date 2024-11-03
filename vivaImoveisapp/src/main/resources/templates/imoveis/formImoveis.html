@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org"
-                xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    
+<html lang="pt-BR" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Cadastro de imoveis</title>
+    <link rel="stylesheet" href="/cadastroimoveis.css">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Cadastro de Imóveis - Viva Imóveis</title>
 </head>
 <body>
-    <h1>Cadastro de imoveis</h1>
-    <form action="/cadastrarimoveis" method="post" enctype="multipart/form-data">
-        <label for="titulo">Título:</label>
-        <input type="text" id="titulo" name="titulo" value=""/>
+    <div class="container">
+        <h1>Cadastro de Imóveis</h1>
+        <form action="/cadastrarimoveis" method="post" enctype="multipart/form-data" class="property-form">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" placeholder="Digite o título do imóvel" required/>
 
-        <label for="anunciante">Anunciante:</label>
-        <input type="text" id="anunciante" name="anunciante" value=""/>
+            <label for="anunciante">Anunciante:</label>
+            <input type="text" id="anunciante" name="anunciante" placeholder="Nome do anunciante" required/>
 
-        <label for="endereco">Endereço:</label>
-        <input type="text" id="endereco" name="endereco" value=""/>
+            <label for="endereco">Endereço:</label>
+            <input type="text" id="endereco" name="endereco" placeholder="Endereço completo" required/>
 
-        <label for="cidade">Cidade:</label>
-        <input type="text" id="cidade" name="cidade" value=""/>
-               
-        <label for="estado">Selecione um Estado:</label>
-            <select id="estado" name="estado">
+            <label for="cidade">Cidade:</label>
+            <input type="text" id="cidade" name="cidade" placeholder="Cidade" required/>
+
+            <label for="estado">Selecione um Estado:</label>
+            <select id="estado" name="estado" required>
                 <option value="">-- Selecione um Estado --</option>
                 <option value="AC">Acre</option>
                 <option value="AL">Alagoas</option>
@@ -55,22 +55,23 @@
                 <option value="TO">Tocantins</option>
             </select>
 
-        
-        
-        <label for="valor">Valor:</label>
-        <input type="text" id="valor" name="valor" value=""/>
-        
-        <label for="observacoes">Observações:</label>
-        <input type="text" id="observacoes" name="observacoes" value=""/>
-       <label> Selecione a categoria do imovel:</label>
-        <label><input type="radio" name="categoria" value="categoria_Aluguel"> Aluguel</label>
-        <label><input type="radio" name="categoria" value="categoria_venda"> Venda  </label>
-    
-        <input name="imagem" type="file" accept="image/*"/>
+            <label for="valor">Valor:</label>
+            <input type="text" id="valor" name="valor" placeholder="Valor do imóvel" required/>
 
-        <button type="submit">Salvar</button>
+            <label for="observacoes">Observações:</label>
+            <textarea id="observacoes" name="observacoes" placeholder="Observações adicionais" rows="4"></textarea>
 
-    </form>
-    
+            <label>Selecione a categoria do imóvel:</label>
+            <div class="category-options">
+                <label><input type="radio" name="categoria" value="categoria_Aluguel" required> Aluguel</label>
+                <label><input type="radio" name="categoria" value="categoria_venda" required> Venda</label>
+            </div>
+
+            <label for="imagem">Imagem:</label>
+            <input name="imagem" type="file" accept="image/*" required/>
+
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
 </body>
 </html>
