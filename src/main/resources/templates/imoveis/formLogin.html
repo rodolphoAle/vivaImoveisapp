@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR"> <!-- Mudei para "pt-BR" para refletir o idioma português -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Viva Imóveis</title>
+    <link rel="stylesheet" href="/login.css">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2> <!-- Adicionei um título dentro do container para melhorar a estrutura -->
+        <form action="/login" method="POST">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required placeholder="Digite seu email">
+
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required placeholder="Digite sua senha">
+
+            <!-- Exibição de mensagens de erro -->
+            <div th:if="${erro != null}" th:text="${erro}" class="alert" role="alert"></div>
+            
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+</body>
+</html>
