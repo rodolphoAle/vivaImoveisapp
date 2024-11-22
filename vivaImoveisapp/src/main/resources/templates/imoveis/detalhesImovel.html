@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Imóvel - Viva Imóveis</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">Viva Imóveis</div>
+        <nav class="nav-links">
+            <a th:href="@{/cadastrarimoveis}">Anuncie Aqui</a>
+            <a th:href="@{/login}">Login</a>
+            <a th:href="@{/cadastrarusuario}">Criar conta</a>
+        </nav>
+    </header>
+
+    <main class="center-container">
+        <div class="imovel-detalhes">
+            <h1 th:text="${imovel.titulo}">Título do Imóvel</h1>
+            <img th:src="@{/imagem/{id}(id=${imovel.id})}" alt="Imagem do Imóvel" class="imovel-imagem"/>
+            <p><strong>Cidade:</strong> <span th:text="${imovel.cidade}">Cidade</span></p>
+            <p><strong>Estado:</strong> <span th:text="${imovel.estado}">Estado</span></p>
+            <p><strong>Endereço:</strong> <span th:text="${imovel.endereco}">Endereço</span></p>
+            <p><strong>Valor:</strong> <span th:text="'R$ ' + ${imovel.valor}" class="valor">Valor</span></p>
+            <p><strong>Categoria:</strong> <span th:text="${imovel.categoria}">Categoria</span></p>
+            <p><strong>Observações:</strong> <span th:text="${imovel.observacoes}">Observações</span></p>
+            <button>Entrar em contato</button>
+        </div>
+    </main>
+</body>
+</html>
