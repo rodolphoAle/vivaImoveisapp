@@ -9,6 +9,7 @@ import com.models.Imoveis;
 @Repository
 public interface ImoveisRepository extends JpaRepository<Imoveis, Long> {
     List<Imoveis> findTop6ByOrderByIdDesc();
+
     List<Imoveis> findByEstado(String estado);
 
    List<Imoveis> findByCidade(String cidade);
