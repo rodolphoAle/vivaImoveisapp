@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viva Imóveis Brasil - Novidades da Semana</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">Viva Imóveis</div>
+        <nav class="nav-links">
+            <a th:href="@{/cadastrarimoveis}">Anuncie Aqui</a>
+            <a th:href="@{/login}">Login</a>
+            <a th:href="@{/cadastrarusuario}">Criar conta</a>
+        </nav>
+    </header>
+
+    <main class="center-container">
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" placeholder="Pesquisar informações">
+            <button>&#128269;</button>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <form method="get" th:action="@{/imoveis/filtrar}">
+                <label for="estado">Selecione um Estado:</label>
+                <select id="estado" name="estado">
+                    <option value="">-- Selecione um Estado --</option>
+                    <option value="AC" th:selected="${estado == 'AC'}">Acre</option>
+                    <option value="AL" th:selected="${estado == 'AL'}">Alagoas</option>
+                    <option value="AP" th:selected="${estado == 'AP'}">Amapá</option>
+                    <option value="AM" th:selected="${estado == 'AM'}">Amazonas</option>
+                    <option value="BA" th:selected="${estado == 'BA'}">Bahia</option>
+                    <option value="CE" th:selected="${estado == 'CE'}">Ceará</option>
+                    <option value="DF" th:selected="${estado == 'DF'}">Distrito Federal</option>
+                    <option value="ES" th:selected="${estado == 'ES'}">Espírito Santo</option>
+                    <option value="GO" th:selected="${estado == 'GO'}">Goiás</option>
+                    <option value="MA" th:selected="${estado == 'MA'}">Maranhão</option>
+                    <option value="MT" th:selected="${estado == 'MT'}">Mato Grosso</option>
+                    <option value="MS" th:selected="${estado == 'MS'}">Mato Grosso do Sul</option>
+                    <option value="MG" th:selected="${estado == 'MG'}">Minas Gerais</option>
+                    <option value="PA" th:selected="${estado == 'PA'}">Pará</option>
+                    <option value="PB" th:selected="${estado == 'PB'}">Paraíba</option>
+                    <option value="PR" th:selected="${estado == 'PR'}">Paraná</option>
+                    <option value="PE" th:selected="${estado == 'PE'}">Pernambuco</option>
+                    <option value="PI" th:selected="${estado == 'PI'}">Piauí</option>
+                    <option value="RJ" th:selected="${estado == 'RJ'}">Rio de Janeiro</option>
+                    <option value="RN" th:selected="${estado == 'RN'}">Rio Grande do Norte</option>
+                    <option value="RS" th:selected="${estado == 'RS'}">Rio Grande do Sul</option>
+                    <option value="RO" th:selected="${estado == 'RO'}">Rondônia</option>
+                    <option value="RR" th:selected="${estado == 'RR'}">Roraima</option>
+                    <option value="SC" th:selected="${estado == 'SC'}">Santa Catarina</option>
+                    <option value="SP" th:selected="${estado == 'SP'}">São Paulo</option>
+                    <option value="SE" th:selected="${estado == 'SE'}">Sergipe</option>
+                    <option value="TO" th:selected="${estado == 'TO'}">Tocantins</option>
+                </select>
+                <label for="cidade">Cidade:</label>
+                <input type="text" id="cidade" name="cidade" placeholder="Cidade" th:value="${cidade}" />
+
+                <label>Selecione a categoria do imóvel:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="categoria" value="categoria_Aluguel" th:checked="${categoria == 'Aluguel'}"> Aluguel</label>
+                    <label><input type="radio" name="categoria" value="categoria_venda" th:checked="${categoria == 'Venda'}"> Venda</label>
+                </div>
+                <button type="submit">Filtrar</button>
+            </form>
+        </div>
+
+        <h2 class="section-title">Imóveis Filtrados</h2>
+        <div class="property-section">
+            <div class="novidades-container">
+                <div class="novidades">
+                    <div th:each="imovel : ${imoveis}" class="imovel-card">
+                        <img th:src="@{/imagem/{id}(id=${imovel.id})}" alt="Imagem do Imóvel" class="imovel-imagem"/>
+                        <h3 th:text="${imovel.titulo}">Título do Imóvel</h3>
+                        <p class="location" th:text="${imovel.cidade}">Cidade</p>
+                        <p class="location" th:text="${imovel.estado}">Estado</p>
+                        <p th:text="${imovel.endereco}">Endereço</p>
+                        <p th:text="'R$ ' + ${imovel.valor}" class="valor">Valor</p>
+                        <a th:href="@{/imoveis/{id}(id=${imovel.id})}" class="saiba-mais">Saiba mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
