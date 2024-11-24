@@ -1,12 +1,14 @@
 package com.vivaImoveis.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.models.Imagem;
 import com.models.Imoveis;
 import com.repository.ImoveisRepository;
 
@@ -17,10 +19,17 @@ public class ImoveisService {
     private ImoveisRepository imoveisRepository;
 
     // Salvar imóvel no banco de dados
-    public void salvarImovel(Imoveis imovel, MultipartFile imagem) throws IOException {
-        if (imagem != null && !imagem.isEmpty()) {
-            imovel.setImagem(imagem.getBytes());
+    public void cadastrarImovel(Imoveis imovel, List<MultipartFile> imagens) throws IOException {
+        List<Imagem> listaImagens = new ArrayList<>();
+
+        for (MultipartFile arquivo : imagens) {
+            Imagem imagem = new Imagem();
+            imagem.setDados(arquivo.getBytes());
+            imagem.setImovel(imovel);
+            listaImagens.add(imagem);
         }
+
+        imovel.setImagens(listaImagens);
         imoveisRepository.save(imovel);
     }
 

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viva Imóveis Brasil - Novidades da Semana</title>
     <link rel="stylesheet" href="/styles.css">
+    <!-- Importar o script JavaScript -->
+    <script src="/js/modal.js" defer></script>
 </head>
 <body>
     <!-- Header -->
@@ -31,32 +33,7 @@
                 <select id="estado" name="estado">
                     <option value="">-- Selecione um Estado --</option>
                     <option value="AC">Acre</option>
-                    <option value="AL">Alagoas</option>
-                    <option value="AP">Amapá</option>
-                    <option value="AM">Amazonas</option>
-                    <option value="BA">Bahia</option>
-                    <option value="CE">Ceará</option>
-                    <option value="DF">Distrito Federal</option>
-                    <option value="ES">Espírito Santo</option>
-                    <option value="GO">Goiás</option>
-                    <option value="MA">Maranhão</option>
-                    <option value="MT">Mato Grosso</option>
-                    <option value="MS">Mato Grosso do Sul</option>
-                    <option value="MG">Minas Gerais</option>
-                    <option value="PA">Pará</option>
-                    <option value="PB">Paraíba</option>
-                    <option value="PR">Paraná</option>
-                    <option value="PE">Pernambuco</option>
-                    <option value="PI">Piauí</option>
-                    <option value="RJ">Rio de Janeiro</option>
-                    <option value="RN">Rio Grande do Norte</option>
-                    <option value="RS">Rio Grande do Sul</option>
-                    <option value="RO">Rondônia</option>
-                    <option value="RR">Roraima</option>
-                    <option value="SC">Santa Catarina</option>
-                    <option value="SP">São Paulo</option>
-                    <option value="SE">Sergipe</option>
-                    <option value="TO">Tocantins</option>
+                    <!-- outras opções de estado -->
                 </select>
                 <label for="cidade">Cidade:</label>
                 <input type="text" id="cidade" name="cidade" placeholder="Cidade" />
@@ -74,13 +51,23 @@
             <div class="novidades-container">
                 <div class="novidades">
                     <div th:each="imovel : ${novidades}" class="imovel-card">
-                        <img th:src="@{/imagem/{id}(id=${imovel.id})}" alt="Imagem do Imóvel" class="imovel-imagem"/>
+                        <!-- Exibe a primeira imagem do imóvel -->
+                        <img th:src="@{/imagem/{id}(id=${imovel.imagens[0].id})}" alt="Imagem do Imóvel" class="imovel-imagem" data-imovel-id="${imovel.id}" />
                         <h3 th:text="${imovel.titulo}">Título do Imóvel</h3>
                         <p class="location" th:text="${imovel.cidade}">Cidade</p>
                         <p class="location" th:text="${imovel.estado}">Estado</p>
                         <p th:text="${imovel.endereco}">Endereço</p>
                         <p th:text="'R$ ' + ${imovel.valor}" class="valor">Valor</p>
                         <a th:href="@{/imoveis/{id}(id=${imovel.id})}" class="saiba-mais">Saiba mais</a>
+                    </div>
+                </div>
+                <!-- Modal para exibir todas as imagens -->
+                <div id="modal-imagem" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <div id="modal-imagens-container" class="imagens-container">
+                            <!-- As imagens serão inseridas aqui dinamicamente -->
+                        </div>
                     </div>
                 </div>
             </div>

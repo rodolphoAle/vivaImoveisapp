@@ -19,7 +19,9 @@
     <main class="center-container">
         <div class="imovel-detalhes">
             <h1 th:text="${imovel.titulo}">Título do Imóvel</h1>
-            <img th:src="@{/imagem/{id}(id=${imovel.id})}" alt="Imagem do Imóvel" class="imovel-imagem"/>
+            <div th:each="imagem : ${imovel.imagens}">
+                <img th:src="@{/imagem/{id}(id=${imagem.id})}" alt="Imagem do Imóvel" class="imovel-imagem"/>
+            </div>
             <p><strong>Cidade:</strong> <span th:text="${imovel.cidade}">Cidade</span></p>
             <p><strong>Estado:</strong> <span th:text="${imovel.estado}">Estado</span></p>
             <p><strong>Endereço:</strong> <span th:text="${imovel.endereco}">Endereço</span></p>

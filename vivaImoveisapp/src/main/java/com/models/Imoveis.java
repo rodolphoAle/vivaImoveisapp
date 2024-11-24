@@ -1,110 +1,111 @@
 package com.models;
 
-import java.io.Serializable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class Imoveis implements Serializable{
-
-    private static final long serialVersionUID = 1L;
+public class Imoveis {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-   
-   
-    private String titulo;
+    private Long id;
     private String anunciante;
-    private Double valor;
-    private String observacoes;
     private String categoria;
-    private String endereco;
     private String cidade;
+    private String endereco;
     private String estado;
+    private String observacoes;
+    private String titulo;
+    private Double valor;
 
-    @Lob
-    private byte[] imagem;  // Campo para armazenar a imagem
+    @OneToMany(mappedBy = "imovel", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Imagem> imagens = new ArrayList<>(); // Inicialize a lista de imagens
 
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
-
-    // Getters e Setters
-    public Usuario getUsuario(){
-        return usuario;
-    }
-    public void setUsuario(Usuario usuario){
-        this.usuario= usuario;
+    public String getAnunciante() {
+        return anunciante;
     }
 
-    public long getId() {
-        return id;
+    public void setAnunciante(String anunciante) {
+        this.anunciante = anunciante;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-    public byte[] getImagem() {
-        return imagem;
+    public String getCategoria() {
+        return categoria;
     }
 
-    public void setImagem(byte[] imagem) {
-        this.imagem = imagem;
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
     public String getEndereco() {
         return endereco;
     }
+
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    public String getCidade() {
-        return cidade;
-    }
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
+
     public String getEstado() {
         return estado;
     }
+
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    public String getTitulo() {
-        return titulo;
-    }
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-    public String getAnunciante() {
-        return anunciante;
-    }
-    public void setAnunciante(String anunciante) {
-        this.anunciante = anunciante;
-    }
-    public Double getValor() {
-        return valor;
-    }
-    public void setValor(Double valor) {
-        this.valor = valor;
-    }
+
     public String getObservacoes() {
         return observacoes;
     }
+
     public void setObservacoes(String observacoes) {
         this.observacoes = observacoes;
     }
-    public String getCategoria() {
-        return categoria;
-    }
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+
+    public String getTitulo() {
+        return titulo;
     }
 
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
+
+    
+
+    // Getters e Setters
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Imagem> getImagens() {
+        return imagens;
+    }
+
+    public void setImagens(List<Imagem> imagens) {
+        this.imagens = imagens;
+    }
+
+    // Outros getters e setters omitidos por brevidade
 }
