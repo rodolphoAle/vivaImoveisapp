@@ -7,18 +7,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.models.Usuario;
-import com.repository.UsuarioRepository;
+import com.vivaImoveis.service.LoginService;
 
 @Controller
-public class loginController {
+public class LoginController {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private LoginService loginService;
 
     @RequestMapping("/login")
     public String index() {
         return "imoveis/formLogin";
     }
+
     @RequestMapping("/imoveis/formUsuario")
     public String form() {
         return "imoveis/formLogin";
@@ -26,7 +27,7 @@ public class loginController {
 
     @PostMapping("/logar")
     public String logar(Model model, Usuario usuario) {
-        Usuario user = this.usuarioRepository.login(usuario.getEmail(), usuario.getSenha());
+        Usuario user = loginService.autenticar(usuario.getEmail(), usuario.getSenha());
 
         if (user != null) {
             return "redirect:/formImoveis";
